@@ -33,8 +33,9 @@ export default function PasserUneNuitPage() {
       <form onSubmit={onSubmit} className="space-y-5 text-sm">
         <Field label="Pseudo" name="pseudo" required />
         <Field label="Date arrivée" name="dateArrivee" type="date" required />
-        <Field label="Date sortie" name="dateSortie" type="date" required />
+        <Field label="Nbr de soirées souhaitées (1-3)" name="durée" type="number" min="1" max="3" required />
         <Field label="Nombre de personnes" name="nombre" type="number" min="1" required />
+        <Field label="Mixité/non-mixité:" name="mixite" required />        
         <div>
           <label htmlFor="message" className="block font-semibold mb-2">Plus d'infos :</label>
           <textarea id="message" name="message" rows={5} className={inputBase + ' rounded-2xl'} />
@@ -59,12 +60,12 @@ const inputBase =
   'w-full border border-card-foreground/20 bg-background/95 px-4 py-2 text-foreground shadow-inner outline-none focus:ring-2 focus:ring-accent'
 
 function Field({
-  label, name, type = 'text', required = false, min,
-}: { label: string; name: string; type?: string; required?: boolean; min?: string }) {
+  label, name, type = 'text', required = false, min, max,
+}: { label: string; name: string; type?: string; required?: boolean; min?: string; max?: string }) {
   return (
     <div className="grid grid-cols-[180px_1fr] items-center gap-4">
       <label htmlFor={name} className="text-right font-semibold">{label} :</label>
-      <input id={name} name={name} type={type} required={required} min={min} className={inputBase + ' rounded-full'} />
+      <input id={name} name={name} type={type} required={required} min={min} max={max} className={inputBase + ' rounded-full'} />
     </div>
   )
 }

@@ -68,8 +68,12 @@ export default function ArticlesPage() {
 
   return (
     <Panel title="Articles">
-      <div className="grid gap-4 md:grid-cols-3">
-        {articles.map((a) => {
+      <div className="flex justify-center items-center w-full py-4">
+        <span className="font-semibold">A venir..</span>
+      </div>
+      {/* Ancienne liste d'articles */}
+      {/* <div className="grid gap-4 md:grid-cols-3">
+        { {articles.map((a) => {
           const Icon = a.icon
           return (
             <button
@@ -81,8 +85,8 @@ export default function ArticlesPage() {
               <span className="font-semibold">{a.title}</span>
             </button>
           )
-        })}
-      </div>
+        })} }
+      </div>*/}
     </Panel>
   )
 }

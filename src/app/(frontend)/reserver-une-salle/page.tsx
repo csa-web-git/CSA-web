@@ -32,14 +32,15 @@ export default function ReserverSallePage() {
   return (
     <Panel title="Réserver une salle">
       <form onSubmit={onSubmit} className="space-y-5 text-sm">
-        <Field label="Pseudo" name="pseudo" required />
-        <Field label="Organisation ?" name="organisation" />
-        <Field label="Salle souhaitée" name="salle" placeholder="Salle principale, atelier…" />
-        <Field label="Date" name="date" type="date" required />
+        <Field label="Organisation/collectif" name="organisation" required/>
+        <Field label="Date arrivée" name="dateArrivee" type="datetime-local" required />
+        <Field label="Date sortie" name="dateSortie" type="datetime-local" required />
+        <Field label="Privé/public" name="privePublic" placeholder='Information ouverte au publique?' required/>
         <Field label="Nombre de personnes estimées" name="nombre" type="number" min="1" required />
+        <Field label="Salle souhaitée" name="salle" placeholder="Rez-de-chaussée/Réunion1/Réunion2" />
         <div>
           <label htmlFor="message" className="block font-semibold mb-2">Plus d'infos :</label>
-          <textarea id="message" name="message" rows={5} className={inputBase + ' rounded-2xl'} />
+          <textarea id="message" name="message" rows={5} placeholder='Informations bonnes à savoir: Qui représentez-vous? Comment avez-vous entendu parler de nous? Est-ce que vous connaissez certaines personnes du CSA? Avez-vous des besoins/des suggestions particuliers? ' className={inputBase + ' rounded-2xl'} />
         </div>
         <input type="text" name="website" tabIndex={-1} autoComplete="off" className="hidden" />
         {state === 'error' && <p className="text-center text-sm text-red-200">{error}</p>}
