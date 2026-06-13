@@ -9,7 +9,6 @@ const mainLinks = [
   { href: '/programme', label: 'Programme' },
   { href: '/articles', label: 'Articles' },
   { href: '/equipes', label: 'Equipes' },
-  { href: '/forum', label: 'Forum' },
   { href: '/contact', label: 'Contact' },
 ]
 

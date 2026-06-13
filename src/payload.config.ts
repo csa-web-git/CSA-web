@@ -19,9 +19,6 @@ import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
 import { formBuilderPlugin } from '@payloadcms/plugin-form-builder'
 import { Taches } from './collections/Taches'
 import { redirectsPlugin } from '@payloadcms/plugin-redirects'
-import { ForumPost } from './collections/ForumPost'
-import { ForumComment } from './collections/ForumComment'
-import { ForumTypes } from './collections/ForumType'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -70,7 +67,7 @@ export default buildConfig({
       connectionString: process.env.DATABASE_URL || '',
     },
   }),
-  collections: [Pages, Posts, Media, Categories, Users, Activites, Equipes, Taches, ForumPost, ForumComment, ForumTypes],
+  collections: [Pages, Posts, Media, Categories, Users, Activites, Equipes, Taches],
   cors: [getServerSideURL()].filter(Boolean),
   globals: [Header, Footer],
   plugins: [
