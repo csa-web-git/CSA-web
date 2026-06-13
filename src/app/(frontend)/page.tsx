@@ -20,12 +20,12 @@ const activities = [
   {
     icon: '/icons/ASBL.png',
     title: "Lieu d'organisation d'ASBL",
-    desc: "Toute ASBL n'a pas le budget pour louer un lieu. Ce bâtiment permet un lieu de rencontre.",
+    desc: "Tout collectifs n'a pas le budget pour louer un lieu. Ce bâtiment permet un lieu pour leurs réunions et activités.",
   },
   {
     icon: '/icons/soupe.png',
-    title: 'Soupe populaire',
-    desc: 'Une cantine improvisée permet de recevoir un repas, et de le payer selon ses moyens.',
+    title: 'Cantine populaire',
+    desc: 'Une cantine offre à certains moments des repas à prix libre.',
   },
   {
     icon: '/icons/atelier.png',
@@ -53,13 +53,13 @@ export default function HomePage() {
       <Panel title="Qui sommes nous?">
         <div className="space-y-4 text-sm leading-relaxed">
           <p>
-            Nous sommes un collectif d&apos;habitant·es et de militant·es qui occupe un bâtiment
-            vide au cœur de Liège pour en faire un centre social autogéré, ouvert à toutes celles et
-            ceux qui veulent participer.
+            Le CSA est un lieu qui regroupe des habitant·es, des militant·es et des collectifs. 
+            Nous occupons un bâtiment qui était abandonné au cœur de Liège pour en faire un centre social autogéré, 
+            ouvert à toutes celles et ceux qui veulent y participer.
           </p>
           <p>
-            Notre démarche est non-violente, horizontale et radicalement inclusive. Chaque décision
-            est prise en assemblée et chaque personne présente compte autant qu&apos;une autre.
+            Notre démarche est horizontale et radicalement inclusive. 
+            Chaque décision importante est prise en assemblée générale et chaque personne présente compte autant qu'une autre.
           </p>
         </div>
       </Panel>
@@ -92,23 +92,6 @@ export default function HomePage() {
         </div>
       </Panel>
 
-      <Panel title="Quels risques pour le projet?">
-        <div className="space-y-4 text-sm leading-relaxed">
-          <p>
-            L&apos;occupation reste fragile juridiquement. Une procédure d&apos;expulsion peut être
-            lancée à tout moment et nous y répondons par la mobilisation collective.
-          </p>
-          <div className="flex justify-center pt-2">
-            <Link
-              href="/articles"
-              className="rounded-full bg-secondary/80 px-5 py-2 text-sm font-medium text-secondary-foreground shadow hover:bg-secondary"
-            >
-              Lien vers un article plus en profondeur →
-            </Link>
-          </div>
-        </div>
-      </Panel>
-
       <Panel title="Comment nous soutenir?">
         <div className="space-y-4 text-sm leading-relaxed">
           <p>
@@ -120,21 +103,13 @@ export default function HomePage() {
             financièrement aux frais courants via la page Contact.
           </p>
         </div>
-      </Panel>
-
-      <Panel title="Comment sommes-nous organisés ?">
-        <div className="space-y-4 text-sm leading-relaxed">
-          <p>
-            Notre organisation repose sur des équipes autonomes que chacun·e peut rejoindre librement selon ses envies, ses compétences ou le temps qu’il souhaite consacrer au projet. Chaque équipe gère ses propres missions au quotidien tout en partageant régulièrement son avancement lors des assemblées générales, où les décisions importantes pour l’ensemble du collectif sont discutées et prises collectivement.
-          </p>
-          <div className="flex justify-center pt-2">
+        <div className="flex justify-center pt-2">
             <Link
               href="/equipes"
-              className="rounded-full bg-secondary/80 px-5 py-2 text-sm font-medium text-secondary-foreground shadow hover:bg-secondary"
+              className="rounded-full bg-accent/80 px-5 py-2 text-sm font-medium text-accent-foreground shadow hover:bg-accent"
             >
-              Lien vers les équipes →
+              Rejoindre un de nos projets →
             </Link>
-          </div>
         </div>
       </Panel>
     </>

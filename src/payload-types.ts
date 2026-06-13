@@ -75,9 +75,6 @@ export interface Config {
     activites: Activite;
     equipes: Equipe;
     taches: Tach;
-    'forum-post': ForumPost;
-    'forum-comment': ForumComment;
-    'forum-type': ForumType;
     forms: Form;
     'form-submissions': FormSubmission;
     redirects: Redirect;
@@ -102,9 +99,6 @@ export interface Config {
     activites: ActivitesSelect<false> | ActivitesSelect<true>;
     equipes: EquipesSelect<false> | EquipesSelect<true>;
     taches: TachesSelect<false> | TachesSelect<true>;
-    'forum-post': ForumPostSelect<false> | ForumPostSelect<true>;
-    'forum-comment': ForumCommentSelect<false> | ForumCommentSelect<true>;
-    'forum-type': ForumTypeSelect<false> | ForumTypeSelect<true>;
     forms: FormsSelect<false> | FormsSelect<true>;
     'form-submissions': FormSubmissionsSelect<false> | FormSubmissionsSelect<true>;
     redirects: RedirectsSelect<false> | RedirectsSelect<true>;
@@ -880,59 +874,6 @@ export interface Tach {
   createdAt: string;
 }
 /**
- * Post du forum
- *
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "forum-post".
- */
-export interface ForumPost {
-  id: number;
-  title: string;
-  content: string;
-  slug?: string | null;
-  type?: (number | null) | ForumType;
-  likes?: number | null;
-  dislikes?: number | null;
-  date: string;
-  /**
-   * Pseudo Signal de l auteur
-   */
-  authorPseudo: string;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "forum-type".
- */
-export interface ForumType {
-  id: number;
-  name: string;
-  couleur: string;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * Commentaire sur un post du forum
- *
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "forum-comment".
- */
-export interface ForumComment {
-  id: number;
-  post: number | ForumPost;
-  content: string;
-  date: string;
-  /**
-   * Pseudo Signal de l auteur
-   */
-  authorPseudo?: string | null;
-  likes?: number | null;
-  dislikes?: number | null;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "form-submissions".
  */
@@ -1119,18 +1060,6 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'taches';
         value: number | Tach;
-      } | null)
-    | ({
-        relationTo: 'forum-post';
-        value: number | ForumPost;
-      } | null)
-    | ({
-        relationTo: 'forum-comment';
-        value: number | ForumComment;
-      } | null)
-    | ({
-        relationTo: 'forum-type';
-        value: number | ForumType;
       } | null)
     | ({
         relationTo: 'forms';
@@ -1529,46 +1458,6 @@ export interface TachesSelect<T extends boolean = true> {
   statut?: T;
   raisonBlocage?: T;
   equipe?: T;
-  updatedAt?: T;
-  createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "forum-post_select".
- */
-export interface ForumPostSelect<T extends boolean = true> {
-  title?: T;
-  content?: T;
-  slug?: T;
-  type?: T;
-  likes?: T;
-  dislikes?: T;
-  date?: T;
-  authorPseudo?: T;
-  updatedAt?: T;
-  createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "forum-comment_select".
- */
-export interface ForumCommentSelect<T extends boolean = true> {
-  post?: T;
-  content?: T;
-  date?: T;
-  authorPseudo?: T;
-  likes?: T;
-  dislikes?: T;
-  updatedAt?: T;
-  createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "forum-type_select".
- */
-export interface ForumTypeSelect<T extends boolean = true> {
-  name?: T;
-  couleur?: T;
   updatedAt?: T;
   createdAt?: T;
 }

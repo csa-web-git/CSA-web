@@ -23,15 +23,15 @@ export default function ContactPage() {
     transition
   "
           >
-            Résidence Quentin, rue de Liège — Liège
+            Pl. Xavier Neujean 9, 4000 Liège
           </a>
         </p>
-        <p>
-          <span className="font-semibold">Lien signal:</span> sur demande
+        {/* <p>
+          <span className="font-semibold">Lien signal:</span> ..
         </p>
         <p>
           <span className="font-semibold">Adresse email:</span> csa@gmail.be
-        </p>
+        </p> */}
       </div>
     </Panel>
   )

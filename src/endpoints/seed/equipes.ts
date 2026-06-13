@@ -4,44 +4,76 @@ import fs from 'fs'
 
 const EQUIPES = [
   {
-    nom: 'Groupe ingé',
-    slug: 'groupe-inge',
+    nom: 'GT Logistique',
+    slug: 'gt-logistique',
     descriptionCourte: 'Gestion des travaux - ect',
     ordre: 1,
     iconFileName: 'inge.png',
-    iconAlt: 'Icône groupe ingé',
+    iconAlt: 'Icône GT Logistique',
   },
   {
-    nom: 'Groupe Fonctionnement',
-    slug: 'groupe-fonctionnement',
-    descriptionCourte: 'Organisation des différentes équipes',
+    nom: 'GT Accueil',
+    slug: 'gt-accueil',
+    descriptionCourte: 'Accueil',
     ordre: 2,
     iconFileName: 'fonctionnement.png',
-    iconAlt: 'Icône groupe fonctionnement',
+    iconAlt: 'Icône GT Accueil',
   },
   {
-    nom: 'Groupe Nourriture',
-    slug: 'groupe-nourriture',
+    nom: 'GT Bouffe',
+    slug: 'gt-bouffe',
     descriptionCourte: 'Gestion de la nourriture et cuisine',
     ordre: 3,
     iconFileName: 'nourriture.png',
-    iconAlt: 'Icône groupe nourriture',
+    iconAlt: 'Icône GT Bouffe',
   },
   {
-    nom: 'Groupe Communication',
-    slug: 'groupe-communication',
-    descriptionCourte: 'Communication extérieur (réseaux, site web)',
+    nom: 'GT Com',
+    slug: 'gt-com',
+    descriptionCourte: 'Communication (réseaux, site web)',
     ordre: 4,
     iconFileName: 'communication.png',
-    iconAlt: 'Icône groupe communication',
+    iconAlt: 'Icône GT Com',
   },
   {
-    nom: 'Groupe activités',
-    slug: 'groupe-activites',
-    descriptionCourte: 'Gestion des salles et des activités',
+    nom: 'GT Habitant.e',
+    slug: 'gt-habitant-e',
+    descriptionCourte: 'Gestion des habitant.es',
     ordre: 5,
+    iconFileName: 'residents.png',
+    iconAlt: 'Icône GT Habitant.e',
+  },
+  {
+    nom: 'GT Garderie',
+    slug: 'gt-garderie',
+    descriptionCourte: 'Gestion de la garderie et des enfants',
+    ordre: 6,
+    iconFileName: 'garderie.png',
+    iconAlt: 'Icône GT Garderie',
+  },
+  {
+    nom: 'GT Économie',
+    slug: 'gt-economie',
+    descriptionCourte: 'Gestion du budget et des finances',
+    ordre: 7,
+    iconFileName: 'economie.png',
+    iconAlt: 'Icône GT Économie',
+  },
+  {
+    nom: 'GT Activité',
+    slug: 'gt-activite',
+    descriptionCourte: 'Gestion des animations et activités',
+    ordre: 8,
     iconFileName: 'activite.png',
-    iconAlt: 'Icône groupe activités',
+    iconAlt: 'Icône GT Activité',
+  },
+  {
+    nom: 'GT Sleeping',
+    slug: 'gt-sleeping',
+    descriptionCourte: 'Gestion des hébergements et couchages',
+    ordre: 9,
+    iconFileName: 'sleeping.png',
+    iconAlt: 'Icône GT Sleeping',
   },
 ]
 
@@ -50,10 +82,10 @@ export async function seedEquipes(payload: Payload, req: PayloadRequest) {
 
   for (const equipe of EQUIPES) {
     let mediaId: string | number | null = null
-    const fileName = equipe.iconFileName // 👈 On utilise la nouvelle propriété de ton tableau
+    const fileName = equipe.iconFileName
 
     try {
-      // 1. VERIFICATION : Est-ce que ce fichier existe déjà dans la collection media ?
+      // 1. VERIFICATION : Est-ce que ce fichier existe déjà ?
       const existingMedia = await payload.find({
         collection: 'media',
         where: {
@@ -64,39 +96,41 @@ export async function seedEquipes(payload: Payload, req: PayloadRequest) {
         limit: 1,
       })
 
+      // 🔥 CORRECTION : Si le média existe, on le supprime pour pouvoir le recréer proprement
       if (existingMedia.docs.length > 0) {
-        // Le fichier existe déjà sur Vercel Blob et dans Payload ! On réutilise son ID
-        payload.logger.info(`L'icône ${fileName} existe déjà, utilisation de l'existant.`)
-        mediaId = existingMedia.docs[0].id
+        payload.logger.info(`L'icône ${fileName} existe déjà. Suppression de l'ancien pour override...`)
+        await payload.delete({
+          collection: 'media',
+          id: existingMedia.docs[0].id,
+        })
+      }
+
+      // 2. Chemin vers vos icônes locales
+      const filePath = path.join(process.cwd(), 'public', 'media', fileName)
+
+      if (fs.existsSync(filePath)) {
+        const fileBuffer = fs.readFileSync(filePath)
+
+        // 3. UPLOAD : On crée le nouveau média (l'override est garanti car l'ancien est supprimé)
+        const media = await payload.create({
+          collection: 'media',
+          data: { alt: equipe.iconAlt },
+          file: {
+            data: fileBuffer,
+            name: fileName,
+            size: fileBuffer.length,
+            mimetype: 'image/png',
+          },
+        })
+        mediaId = media.id
       } else {
-        // 2.process.cwd() donne la racine de le projet
-        const filePath = path.join(process.cwd(), 'public', 'media', fileName)
-
-        if (fs.existsSync(filePath)) {
-          const fileBuffer = fs.readFileSync(filePath)
-
-          // 3. UPLOAD : On pousse le buffer local vers Payload (qui l'envoie sur Vercel Blob)
-          const media = await payload.create({
-            collection: 'media',
-            data: { alt: equipe.iconAlt },
-            file: {
-              data: fileBuffer,
-              name: fileName,
-              size: fileBuffer.length,
-              mimetype: 'image/png',
-            },
-            overwriteExistingFiles: true
-          })
-          mediaId = media.id
-        } else {
-          payload.logger.error(`Fichier introuvable sur le disque : ${filePath}`)
-        }
+        payload.logger.error(`Fichier introuvable sur le disque : ${filePath}`)
       }
     } catch (error) {
       payload.logger.error(`Erreur média pour ${equipe.nom}:`)
     }
 
-    // 4. Création de l'équipe (liaison avec le mediaId trouvé ou créé)
+    // 4. Création de l'équipe
     await payload.create({
       collection: 'equipes',
       data: {
@@ -108,4 +142,5 @@ export async function seedEquipes(payload: Payload, req: PayloadRequest) {
       },
     })
   }
+  payload.logger.info('✅ Seeding des équipes terminé avec succès !')
 }
