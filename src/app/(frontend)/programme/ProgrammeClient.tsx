@@ -125,7 +125,7 @@ export function ProgrammeClient({ weekISO, activites, categories }: Props) {
                     return (
                       <Link
                         key={a.id}
-                        href={`/activites/${a.slug}`}
+                        href={`/programme/${a.slug}`}
                         className="block rounded-xl p-3 text-sm shadow"
                         style={{ backgroundColor: bg }}
                       >
@@ -196,7 +196,7 @@ export function ProgrammeClient({ weekISO, activites, categories }: Props) {
                 return (
                   <Link
                     key={a.id}
-                    href={`/activites/${a.slug}`}
+                    href={`/programme/${a.slug}`}
                     className="block w-full rounded-2xl px-2 py-2 text-left text-[11px] shadow transition hover:-translate-y-0.5 hover:shadow-md"
                     style={{ backgroundColor: bg }}
                   >

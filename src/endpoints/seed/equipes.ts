@@ -106,7 +106,7 @@ export async function seedEquipes(payload: Payload, req: PayloadRequest) {
       }
 
       // 2. Chemin vers vos icônes locales
-      const filePath = path.join(process.cwd(), 'public', 'media', fileName)
+      const filePath = path.join(process.cwd(), 'public', 'icons', fileName)
 
       if (fs.existsSync(filePath)) {
         const fileBuffer = fs.readFileSync(filePath)

@@ -19,7 +19,7 @@ const activities = [
   },
   {
     icon: '/icons/ASBL.png',
-    title: "Lieu d'organisation d'ASBL",
+    title: "Lieu d'organisation de collectifs",
     desc: "Tout collectifs n'a pas le budget pour louer un lieu. Ce bâtiment permet un lieu pour leurs réunions et activités.",
   },
   {
@@ -105,7 +105,7 @@ export default function HomePage() {
         </div>
         <div className="flex justify-center pt-2">
             <Link
-              href="/equipes"
+              href="/activites"
               className="rounded-full bg-accent/80 px-5 py-2 text-sm font-medium text-accent-foreground shadow hover:bg-accent"
             >
               Rejoindre un de nos projets →
