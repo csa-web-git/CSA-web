@@ -32,37 +32,43 @@
  * THEME — Modifie ces 6 couleurs pour changer tout le site.
  * ========================================================= */
 :root {
-  --brand-bg:            oklch(0.93 0.03 145);
-  --brand-panel:         oklch(0.42 0.05 160);
-  --brand-header:        oklch(0.48 0.04 160);
+  --radius: 0rem;
 
-  --brand-text:          oklch(0.22 0.02 60);
-  --brand-text-on-panel: oklch(0.96 0.01 80);
+  --brand-bg:            #e8e8e8;
+  --brand-panel:         #000000;
+  --brand-header:        #000000;
 
-  --brand-accent:        oklch(0.72 0.10 75);
+  --brand-text:          #000000;
+  --brand-text-on-panel: #ffffff;
 
-  --radius: 0.7rem;
-
-  --radius: 0.5rem;
+  --brand-accent:        #ffffff;
 
   --background: var(--brand-bg);
   --foreground: var(--brand-text);
+
   --card: var(--brand-panel);
   --card-foreground: var(--brand-text-on-panel);
+
   --primary: var(--brand-panel);
   --primary-foreground: var(--brand-text-on-panel);
-  --secondary: oklch(0.78 0.005 250);
-  --secondary-foreground: var(--brand-text);
-  --muted: oklch(0.85 0.04 145);
-  --muted-foreground: oklch(0.35 0.02 50);
+
+  --secondary: #ffffff;
+  --secondary-foreground: #000000;
+
+  --muted: #d8d8d8;
+  --muted-foreground: #333333;
+
   --accent: var(--brand-accent);
-  --accent-foreground: var(--brand-text);
-  --destructive: oklch(0.55 0.22 25);
-  --border: var(--brand-header);
-  --input: oklch(0.85 0.02 180);
-  --ring: var(--brand-panel);
+  --accent-foreground: #000000;
+
+  --destructive: #d32f2f;
+
+  --border: #000000;
+  --input: #ffffff;
+  --ring: #000000;
+
   --header: var(--brand-header);
-  --header-foreground: var(--brand-text);
+  --header-foreground: #ffffff;
 }
 
 @layer base {
