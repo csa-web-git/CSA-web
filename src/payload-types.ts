@@ -77,6 +77,7 @@ export interface Config {
     taches: Tach;
     'besoins-materiels': BesoinsMateriel;
     'activites-recurrentes': ActivitesRecurrente;
+    soumissions: Soumission;
     forms: Form;
     'form-submissions': FormSubmission;
     redirects: Redirect;
@@ -103,6 +104,7 @@ export interface Config {
     taches: TachesSelect<false> | TachesSelect<true>;
     'besoins-materiels': BesoinsMaterielsSelect<false> | BesoinsMaterielsSelect<true>;
     'activites-recurrentes': ActivitesRecurrentesSelect<false> | ActivitesRecurrentesSelect<true>;
+    soumissions: SoumissionsSelect<false> | SoumissionsSelect<true>;
     forms: FormsSelect<false> | FormsSelect<true>;
     'form-submissions': FormSubmissionsSelect<false> | FormSubmissionsSelect<true>;
     redirects: RedirectsSelect<false> | RedirectsSelect<true>;
@@ -914,6 +916,31 @@ export interface BesoinsMateriel {
   createdAt: string;
 }
 /**
+ * Soumissions des formulaires du site, à valider ou refuser.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "soumissions".
+ */
+export interface Soumission {
+  id: number;
+  type: 'reservation-salle' | 'passer-nuit' | 'contact';
+  statut: 'en-attente' | 'validee' | 'refusee';
+  /**
+   * Contenu brut soumis par le formulaire.
+   */
+  donnees?:
+    | {
+        [k: string]: unknown;
+      }
+    | unknown[]
+    | string
+    | number
+    | boolean
+    | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "form-submissions".
  */
@@ -1108,6 +1135,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'activites-recurrentes';
         value: number | ActivitesRecurrente;
+      } | null)
+    | ({
+        relationTo: 'soumissions';
+        value: number | Soumission;
       } | null)
     | ({
         relationTo: 'forms';
@@ -1534,6 +1565,17 @@ export interface ActivitesRecurrentesSelect<T extends boolean = true> {
   descriptionCourte?: T;
   descriptionLongue?: T;
   activitePlanning?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "soumissions_select".
+ */
+export interface SoumissionsSelect<T extends boolean = true> {
+  type?: T;
+  statut?: T;
+  donnees?: T;
   updatedAt?: T;
   createdAt?: T;
 }

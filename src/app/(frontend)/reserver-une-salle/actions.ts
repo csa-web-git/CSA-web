@@ -1,14 +1,16 @@
 'use server'
 
 import { z } from 'zod'
-import { sendMail } from '@/lib/send-mail'
+import { getPayload } from 'payload'
+import config from '@payload-config'
 
 const Schema = z.object({
-  pseudo: z.string().trim().min(1).max(100),
-  organisation: z.string().trim().max(200).optional(),
-  salle: z.string().trim().max(200).optional(),
-  date: z.string().trim().min(1).max(50),
+  organisation: z.string().trim().min(1).max(200),
+  dateArrivee: z.string().trim().min(1).max(50),
+  dateSortie: z.string().trim().min(1).max(50),
+  privePublic: z.string().trim().min(1).max(200),
   nombre: z.coerce.number().int().min(1).max(1000),
+  salle: z.string().trim().max(200).optional(),
   message: z.string().trim().max(2000).optional(),
   website: z.string().max(0).optional(), // honeypot
 })
@@ -21,21 +23,30 @@ export async function reserverSalle(formData: FormData): Promise<ReservationResu
   if (!parsed.success) {
     return { ok: false, error: 'Formulaire invalide.' }
   }
+
   const d = parsed.data
+
   try {
-    await sendMail({
-      subject: `[Réservation salle] ${d.pseudo} — ${d.date}`,
-      text:
-        `Pseudo : ${d.pseudo}\n` +
-        `Organisation : ${d.organisation ?? '-'}\n` +
-        `Salle souhaitée : ${d.salle ?? '-'}\n` +
-        `Date : ${d.date}\n` +
-        `Personnes estimées : ${d.nombre}\n\n` +
-        `Message :\n${d.message ?? '-'}\n`,
+    const payload = await getPayload({ config })
+    await payload.create({
+      collection: 'soumissions',
+      data: {
+        type: 'reservation-salle',
+        statut: 'en-attente',
+        donnees: {
+          organisation: d.organisation,
+          dateArrivee: d.dateArrivee,
+          dateSortie: d.dateSortie,
+          privePublic: d.privePublic,
+          nombre: d.nombre,
+          salle: d.salle ?? null,
+          message: d.message ?? null,
+        },
+      },
     })
     return { ok: true }
   } catch (e) {
     console.error(e)
-    return { ok: false, error: 'Envoi du mail échoué.' }
+    return { ok: false, error: 'Enregistrement échoué.' }
   }
 }
