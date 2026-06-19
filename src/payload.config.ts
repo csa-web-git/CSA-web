@@ -21,6 +21,7 @@ import { Taches } from './collections/Taches'
 import { redirectsPlugin } from '@payloadcms/plugin-redirects'
 import { BesoinsMateriels } from './collections/BesoinsMateriels'
 import { ActivitesRecurrentes } from './collections/ActivitesRecurrentes'
+import { Soumissions } from './collections/Soumissions'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -69,7 +70,7 @@ export default buildConfig({
       connectionString: process.env.DATABASE_URL || '',
     },
   }),
-  collections: [Pages, Posts, Media, Categories, Users, Activites, Equipes, Taches, BesoinsMateriels, ActivitesRecurrentes],
+  collections: [Pages, Posts, Media, Categories, Users, Activites, Equipes, Taches, BesoinsMateriels, ActivitesRecurrentes, Soumissions],
   cors: [getServerSideURL()].filter(Boolean),
   globals: [Header, Footer],
   plugins: [
