@@ -5,11 +5,11 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
 const mainLinks = [
-  { href: '/', label: 'Home' },
   { href: '/programme', label: 'Programme' },
-  { href: '/articles', label: 'Articles' },
-  { href: '/equipes', label: 'Equipes' },
-  { href: '/contact', label: 'Contact' },
+  // { href: '/articles', label: 'Articles' },
+  { href: '/activites', label: 'Activites' },
+  { href: '/soutien-materiel', label: 'Soutien' },
+  // { href: '/contact', label: 'Contact' },
 ]
 
 const ctaLinks = [
@@ -45,13 +45,14 @@ export function SiteHeader() {
         </div>
       )}
 
-        <div className="font-display text-base font-bold leading-tight text-header-foreground">
+
+        <Link href="/" className="font-display text-base font-bold leading-tight text-header-foreground block">
           Centre
           <br />
           Social
           <br />
-          Associatif
-        </div>
+          Auto-géré
+        </Link>
 
         <button
           onClick={() => setMenuOpen(!menuOpen)}

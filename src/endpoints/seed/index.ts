@@ -85,7 +85,7 @@ export const seed = async ({
   })
 
   // Équipes en dernier car elles ne dépendent de rien
-  await seedEquipes(payload, req)
+  // await seedEquipes(payload, req)
 
   // DEFAULT SEEDING
   payload.logger.info(`— Seeding media...`)

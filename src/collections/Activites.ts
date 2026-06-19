@@ -28,7 +28,8 @@ export const Activites: CollectionConfig = {
       admin: { position: 'sidebar' },
       hooks: {
         beforeValidate: [
-          ({ value, data }) => value || (data?.titre ? slugify(String(data.titre)) : value),
+          ({ value, data }) =>
+            value || (data?.titre ? slugify(String(data.titre + data.date)) : value),
         ],
       },
     },
@@ -82,6 +83,28 @@ export const Activites: CollectionConfig = {
       type: 'upload',
       relationTo: 'media',
       required: false,
+    },
+    {
+      name: 'activiteRecurrente',
+      type: 'relationship',
+      relationTo: 'activites-recurrentes',
+      admin: { description: 'Est-ce que cette activité est récurrente, si oui encoder laquelle..' },
+      required: false,
+      hasMany: false,
+    },
+    {
+      name: 'afficherActivitePonctuelle',
+      type: 'checkbox',
+      required: true,
+      defaultValue: false,
+      admin: {
+        description:
+          'Permet d afficher sur la page activite en plus de la page programme. Permet un petit coup de pub supplémentaire',
+        condition: (data, siblingData) => {
+          // On affiche la checkbox UNIQUEMENT si activiteRecurrente est vide/null
+          return !siblingData?.activiteRecurrente
+        },
+      },
     },
   ],
 }

@@ -2,51 +2,63 @@
 
 /* Theme tokens — change these 6 to retheme everything */
 :root {
-  --brand-bg:             oklch(0.82 0.06 145);
-  --brand-panel:          oklch(0.38 0.05 155);
-  --brand-header:         oklch(0.32 0.05 155);
-  --brand-text:           oklch(0.2 0.02 50);
-  --brand-text-on-panel:  oklch(0.96 0.01 80);
-  --brand-accent:         oklch(0.72 0.08 80);
+  --radius: 0rem;
 
-  --background:           var(--brand-bg);
-  --foreground:           var(--brand-text);
-  --card:                 var(--brand-panel);
-  --card-foreground:      var(--brand-text-on-panel);
-  --popover:              var(--brand-panel);
-  --popover-foreground:   var(--brand-text-on-panel);
-  --primary:              var(--brand-panel);
-  --primary-foreground:   var(--brand-text-on-panel);
-  --secondary:            oklch(0.78 0.005 250);
-  --secondary-foreground: var(--brand-text);
-  --muted:                oklch(0.85 0.04 145);
-  --muted-foreground:     oklch(0.45 0.03 100);
-  --accent:               var(--brand-accent);
-  --accent-foreground:    var(--brand-text);
-  --header:               var(--brand-header);
-  --header-foreground:    var(--brand-text-on-panel);
-  --destructive:          oklch(57.7% 0.245 27.325deg);
-  --destructive-foreground: oklch(57.7% 0.245 27.325deg);
-  --border:               oklch(0.72 0.05 145);
-  --input:                oklch(0.78 0.04 145);
-  --ring:                 var(--brand-accent);
-  --radius:               0.625rem;
-  --chart-1: oklch(64.6% 0.222 41.116deg);
-  --chart-2: oklch(60% 0.118 184.704deg);
-  --chart-3: oklch(39.8% 0.07 227.392deg);
-  --chart-4: oklch(82.8% 0.189 84.429deg);
-  --chart-5: oklch(76.9% 0.188 70.08deg);
-  --sidebar:              var(--brand-header);
-  --sidebar-foreground:   var(--brand-text-on-panel);
-  --sidebar-primary:      var(--brand-accent);
-  --sidebar-primary-foreground: var(--brand-text-on-panel);
-  --sidebar-accent:       var(--brand-panel);
-  --sidebar-accent-foreground: var(--brand-text-on-panel);
-  --sidebar-border:       oklch(0.28 0.04 155);
-  --sidebar-ring:         var(--brand-accent);
-  --success: oklch(78% 0.08 200deg);
-  --warning: oklch(89% 0.1 75deg);
-  --error:   oklch(75% 0.15 25deg);
+  --brand-bg:            #e8e8e8;
+  --brand-panel:         #000000;
+  --brand-header:        #000000;
+
+  --brand-text:          #000000;
+  --brand-text-on-panel: #ffffff;
+
+  --brand-accent:        #ffffff;
+
+  --background: var(--brand-bg);
+  --foreground: var(--brand-text);
+
+  --card: var(--brand-panel);
+  --card-foreground: var(--brand-text-on-panel);
+
+  --primary: var(--brand-panel);
+  --primary-foreground: var(--brand-text-on-panel);
+
+  --secondary: #ffffff;
+  --secondary-foreground: #000000;
+
+  --muted: #d8d8d8;
+  --muted-foreground: #333333;
+
+  --accent: var(--brand-accent);
+  --accent-foreground: #000000;
+
+  --destructive: #d32f2f;
+
+  --border: #000000;
+  --input: #ffffff;
+  --ring: #000000;
+
+  --header: var(--brand-header);
+  --header-foreground: #ffffff;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-special-elite);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+nav,
+nav a {
+  font-family: var(--font-special-elite);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 0.95rem;
+}
+
+body {
+  font-family: var(--font-body);
 }
 
 @theme inline {

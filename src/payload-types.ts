@@ -75,6 +75,8 @@ export interface Config {
     activites: Activite;
     equipes: Equipe;
     taches: Tach;
+    'besoins-materiels': BesoinsMateriel;
+    'activites-recurrentes': ActivitesRecurrente;
     forms: Form;
     'form-submissions': FormSubmission;
     redirects: Redirect;
@@ -99,6 +101,8 @@ export interface Config {
     activites: ActivitesSelect<false> | ActivitesSelect<true>;
     equipes: EquipesSelect<false> | EquipesSelect<true>;
     taches: TachesSelect<false> | TachesSelect<true>;
+    'besoins-materiels': BesoinsMaterielsSelect<false> | BesoinsMaterielsSelect<true>;
+    'activites-recurrentes': ActivitesRecurrentesSelect<false> | ActivitesRecurrentesSelect<true>;
     forms: FormsSelect<false> | FormsSelect<true>;
     'form-submissions': FormSubmissionsSelect<false> | FormSubmissionsSelect<true>;
     redirects: RedirectsSelect<false> | RedirectsSelect<true>;
@@ -816,6 +820,29 @@ export interface Activite {
   } | null;
   categorie: number | Category;
   image?: (number | null) | Media;
+  /**
+   * Est-ce que cette activité est récurrente, si oui encoder laquelle..
+   */
+  activiteRecurrente?: (number | null) | ActivitesRecurrente;
+  /**
+   * Permet d afficher sur la page activite en plus de la page programme. Permet un petit coup de pub supplémentaire
+   */
+  afficherActivitePonctuelle?: boolean | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "activites-recurrentes".
+ */
+export interface ActivitesRecurrente {
+  id: number;
+  titre: string;
+  slug?: string | null;
+  miniAffiche?: (number | null) | Media;
+  descriptionCourte?: string | null;
+  descriptionLongue?: string | null;
+  activitePlanning?: (number | null) | Activite;
   updatedAt: string;
   createdAt: string;
 }
@@ -870,6 +897,19 @@ export interface Tach {
   statut: 'a-faire' | 'en-cours' | 'termine' | 'bloque';
   raisonBlocage?: string | null;
   equipe: number | Equipe;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "besoins-materiels".
+ */
+export interface BesoinsMateriel {
+  id: number;
+  titre: string;
+  description?: string | null;
+  fait?: boolean | null;
+  afficher?: boolean | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -1060,6 +1100,14 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'taches';
         value: number | Tach;
+      } | null)
+    | ({
+        relationTo: 'besoins-materiels';
+        value: number | BesoinsMateriel;
+      } | null)
+    | ({
+        relationTo: 'activites-recurrentes';
+        value: number | ActivitesRecurrente;
       } | null)
     | ({
         relationTo: 'forms';
@@ -1428,6 +1476,8 @@ export interface ActivitesSelect<T extends boolean = true> {
   descriptionLongue?: T;
   categorie?: T;
   image?: T;
+  activiteRecurrente?: T;
+  afficherActivitePonctuelle?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -1458,6 +1508,32 @@ export interface TachesSelect<T extends boolean = true> {
   statut?: T;
   raisonBlocage?: T;
   equipe?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "besoins-materiels_select".
+ */
+export interface BesoinsMaterielsSelect<T extends boolean = true> {
+  titre?: T;
+  description?: T;
+  fait?: T;
+  afficher?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "activites-recurrentes_select".
+ */
+export interface ActivitesRecurrentesSelect<T extends boolean = true> {
+  titre?: T;
+  slug?: T;
+  miniAffiche?: T;
+  descriptionCourte?: T;
+  descriptionLongue?: T;
+  activitePlanning?: T;
   updatedAt?: T;
   createdAt?: T;
 }
