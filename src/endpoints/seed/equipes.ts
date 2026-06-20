@@ -121,6 +121,7 @@ export async function seedEquipes(payload: Payload, req: PayloadRequest) {
             size: fileBuffer.length,
             mimetype: 'image/png',
           },
+          overwriteExistingFiles: true,
         })
         mediaId = media.id
       } else {

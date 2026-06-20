@@ -3,6 +3,7 @@ import './globals.css'
 import { SiteHeader } from '@/components/SiteHeader'
 import { SiteFooter } from '@/components/SiteFooter'
 import { Special_Elite } from 'next/font/google'
+import { FloatingFormButton } from '@/components/Forms/FloatingFormButton'
 
 
 const fraunces = Fraunces({
@@ -43,6 +44,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="min-h-screen bg-background text-foreground antialiased">
         <SiteHeader />
         <main className="px-4 py-10 space-y-10">{children}</main>
+        <FloatingFormButton />
         <SiteFooter />
       </body>
     </html>
