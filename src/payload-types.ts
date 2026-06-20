@@ -820,7 +820,7 @@ export interface Activite {
     };
     [k: string]: unknown;
   } | null;
-  categorie: number | Category;
+  categorie?: (number | null) | Category;
   image?: (number | null) | Media;
   /**
    * Est-ce que cette activité est récurrente, si oui encoder laquelle..
@@ -923,7 +923,7 @@ export interface BesoinsMateriel {
  */
 export interface Soumission {
   id: number;
-  type: 'reservation-salle' | 'passer-nuit' | 'contact';
+  type: 'reservation-salle' | 'passer-nuit' | 'ajout-besoin' | 'confirmation-besoin' | 'ajout-activite';
   statut: 'en-attente' | 'validee' | 'refusee';
   /**
    * Contenu brut soumis par le formulaire.

@@ -12,10 +12,10 @@ const mainLinks = [
   // { href: '/contact', label: 'Contact' },
 ]
 
-const ctaLinks = [
-  { href: '/reserver-une-salle', label: 'Réserve une salle' },
-  { href: '/passer-une-nuit', label: 'Passer une nuit' },
-]
+// const ctaLinks = [
+//   { href: '/reserver-une-salle', label: 'Réserve une salle' },
+//   { href: '/passer-une-nuit', label: 'Passer une nuit' },
+// ]
 
 export function SiteHeader() {
   const [menuOpen, setMenuOpen] = useState(false)
@@ -25,25 +25,27 @@ export function SiteHeader() {
   return (
     <header className="w-full bg-header py-5 px-6">
       <nav className="mx-auto flex max-w-7xl items-center justify-between gap-4 flex-wrap">
-        {menuOpen && (
-        <div className="md:hidden mt-4 flex flex-col gap-2">
-          {[...mainLinks, ...ctaLinks].map((l) => (
-            <Link
-              key={l.href}
-              href={l.href}
-              onClick={() => setMenuOpen(false)}
-              className={[
-                'rounded-md px-4 py-3 text-center font-medium',
-                isActive(l.href)
-                  ? 'bg-primary text-primary-foreground'
-                  : 'bg-secondary text-secondary-foreground',
-              ].join(' ')}
-            >
-              {l.label}
-            </Link>
-          ))}
-        </div>
-      )}
+        {menuOpen 
+        // && (
+        // <div className="md:hidden mt-4 flex flex-col gap-2">
+        //   {[...mainLinks, ...ctaLinks].map((l) => (
+        //     <Link
+        //       key={l.href}
+        //       href={l.href}
+        //       onClick={() => setMenuOpen(false)}
+        //       className={[
+        //         'rounded-md px-4 py-3 text-center font-medium',
+        //         isActive(l.href)
+        //           ? 'bg-primary text-primary-foreground'
+        //           : 'bg-secondary text-secondary-foreground',
+        //       ].join(' ')}
+        //     >
+        //       {l.label}
+        //     </Link>
+        //   ))}
+        // </div>
+      // )
+      }
 
 
         <Link href="/" className="font-display text-base font-bold leading-tight text-header-foreground block">
@@ -78,7 +80,7 @@ export function SiteHeader() {
           ))}
         </div>
 
-        <div className="hidden md:flex items-center gap-3 flex-wrap">
+        {/* <div className="hidden md:flex items-center gap-3 flex-wrap">
           {ctaLinks.map((l) => (
             <Link
               key={l.href}
@@ -94,7 +96,7 @@ export function SiteHeader() {
               <div className="text-base leading-none mt-1">↓</div>
             </Link>
           ))}
-        </div>
+        </div> */}
       </nav>
     </header>
   )

@@ -20,6 +20,30 @@ function formatHeure(dateString: string) {
   })
 }
 
+function getContrastColor(hex: string) {
+  const color = hex.replace('#', '')
+
+  const r = parseInt(color.substring(0, 2), 16)
+  const g = parseInt(color.substring(2, 4), 16)
+  const b = parseInt(color.substring(4, 6), 16)
+
+  const luminance = 0.299 * r + 0.587 * g + 0.114 * b
+
+  return luminance > 160 ? '#111111' : '#FFFFFF'
+}
+
+function getSecondaryTextColor(hex: string) {
+  const color = hex.replace('#', '')
+
+  const r = parseInt(color.substring(0, 2), 16)
+  const g = parseInt(color.substring(2, 4), 16)
+  const b = parseInt(color.substring(4, 6), 16)
+
+  const luminance = 0.299 * r + 0.587 * g + 0.114 * b
+
+  return luminance > 160 ? 'rgba(0,0,0,0.65)' : 'rgba(255,255,255,0.75)'
+}
+
 export function ProgrammeClient({ weekISO, activites, categories }: Props) {
   const router = useRouter()
   const [pending, startTransition] = useTransition()
@@ -45,10 +69,7 @@ export function ProgrammeClient({ weekISO, activites, categories }: Props) {
 
     for (const day of Object.values(map)) {
       day.sort((a, b) => {
-        return (
-          new Date(a.heureDebut).getTime() -
-          new Date(b.heureDebut).getTime()
-        )
+        return new Date(a.heureDebut).getTime() - new Date(b.heureDebut).getTime()
       })
     }
 
@@ -77,9 +98,7 @@ export function ProgrammeClient({ weekISO, activites, categories }: Props) {
           ← Semaine précédente
         </button>
 
-        <h2 className="text-center text-lg font-bold capitalize">
-          {formatRange(range)}
-        </h2>
+        <h2 className="text-center text-lg font-bold capitalize">{formatRange(range)}</h2>
 
         <button
           onClick={() => go(1)}
@@ -99,49 +118,47 @@ export function ProgrammeClient({ weekISO, activites, categories }: Props) {
           const h = formatDayHeader(d)
 
           return (
-            <div
-              key={d.toISOString()}
-              className="rounded-xl border border-card-foreground/20 p-3"
-            >
+            <div key={d.toISOString()} className="rounded-xl border border-card-foreground/20 p-3">
               <h3 className="mb-3 text-lg font-semibold">
                 {h.name} {h.num} {h.month}
               </h3>
 
               {byDay[idx].length === 0 ? (
-                <p className="text-sm opacity-50">
-                  Aucune activité
-                </p>
+                <p className="text-sm opacity-50">Aucune activité</p>
               ) : (
                 <div className="space-y-2">
                   {byDay[idx].map((a) => {
                     const cat =
-                      typeof a.categorie === 'object' &&
-                      a.categorie !== null
+                      typeof a.categorie === 'object' && a.categorie !== null
                         ? (a.categorie as Category)
                         : null
 
                     const bg = cat?.couleur ?? '#cccccc'
+                    const textColor = getContrastColor(bg)
+                    const secondaryColor = getSecondaryTextColor(bg)
 
                     return (
                       <Link
                         key={a.id}
                         href={`/programme/${a.slug}`}
-                        className="block rounded-xl p-3 text-sm shadow"
-                        style={{ backgroundColor: bg }}
+                        className="block rounded-xl p-3 shadow"
+                        style={{
+                          backgroundColor: bg,
+                          color: textColor,
+                          border: '1px solid rgba(0,0,0,0.08)',
+                        }}
                       >
-                        <div className="font-semibold">
+                        <div className="font-semibold" style={{ color: textColor }}>
                           {a.titre}
                         </div>
 
-                        <div>
+                        <div style={{ color: secondaryColor }}>
                           {formatHeure(a.heureDebut)} - {formatHeure(a.heureFin)}
                         </div>
 
-                        <div>{a.lieu}</div>
+                        {/* <div style={{ color: secondaryColor }}>{a.lieu}</div> */}
 
-                        <div className="opacity-80">
-                          contact "{a.organisateurs}"
-                        </div>
+                        {/* <div style={{ color: secondaryColor }}>contact "{a.organisateurs}"</div> */}
                       </Link>
                     )
                   })}
@@ -163,10 +180,7 @@ export function ProgrammeClient({ weekISO, activites, categories }: Props) {
             const h = formatDayHeader(d)
 
             return (
-              <div
-                key={d.toISOString()}
-                className="text-center text-sm font-semibold"
-              >
+              <div key={d.toISOString()} className="text-center text-sm font-semibold">
                 <div>{h.name}</div>
 
                 <div className="text-xs opacity-70">
@@ -186,33 +200,36 @@ export function ProgrammeClient({ weekISO, activites, categories }: Props) {
             >
               {byDay[idx].map((a) => {
                 const cat =
-                  typeof a.categorie === 'object' &&
-                  a.categorie !== null
+                  typeof a.categorie === 'object' && a.categorie !== null
                     ? (a.categorie as Category)
                     : null
 
                 const bg = cat?.couleur ?? '#cccccc'
+                const textColor = getContrastColor(bg)
+                const secondaryColor = getSecondaryTextColor(bg)
 
                 return (
                   <Link
                     key={a.id}
                     href={`/programme/${a.slug}`}
-                    className="block w-full rounded-2xl px-2 py-2 text-left text-[11px] shadow transition hover:-translate-y-0.5 hover:shadow-md"
-                    style={{ backgroundColor: bg }}
+                    className="block w-full rounded-2xl px-3 py-3 shadow transition hover:-translate-y-0.5 hover:shadow-lg"
+                    style={{
+                      backgroundColor: bg,
+                      color: textColor,
+                      border: '1px solid rgba(0,0,0,0.08)',
+                    }}
                   >
-                    <div className="font-semibold">
+                    <div className="mb-1 font-semibold" style={{ color: textColor }}>
                       {a.titre}
                     </div>
 
-                    <div>
+                    <div style={{ color: secondaryColor }}>
                       {formatHeure(a.heureDebut)} - {formatHeure(a.heureFin)}
                     </div>
+                    {/* 
+                    <div style={{ color: secondaryColor }}>{a.lieu}</div>
 
-                    <div>{a.lieu}</div>
-
-                    <div>
-                      contact "{a.organisateurs}"
-                    </div>
+                    <div style={{ color: secondaryColor }}>contact "{a.organisateurs}"</div> */}
                   </Link>
                 )
               })}

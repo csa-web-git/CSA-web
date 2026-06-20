@@ -78,8 +78,8 @@ export default async function ProgrammePage({ params }: { params: Promise<Params
             <Image
               src={img.url}
               alt={img.alt ?? a.titre}
-              width={img.width ?? 1200}   // 👈 Utilise la vraie largeur de Payload
-              height={img.height ?? 675} // 👈 Utilise la vraie hauteur de Payload
+              width={img.width ?? 1200} 
+              height={img.height ?? 675} 
               className="h-auto w-full object-scale-down" 
               sizes="(max-width: 768px) 100vw, 768px"
             />
@@ -96,9 +96,14 @@ export default async function ProgrammePage({ params }: { params: Promise<Params
           </div>
         )}
 
-        <footer className="mt-10 border-t border-card-foreground/20 pt-6 text-sm">
-          <p><strong>Organisateurs :</strong> {a.organisateurs}</p>
-        </footer>
+        
+        {a.organisateurs && (
+          <footer className="mt-10 border-t border-card-foreground/20 pt-6 text-sm">
+            <p>
+              <strong>Organisateurs :</strong> {a.organisateurs}
+            </p>
+          </footer>
+        )}
       </article>
     </div>
   )

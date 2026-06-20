@@ -75,7 +75,7 @@ export const Activites: CollectionConfig = {
       name: 'categorie',
       type: 'relationship',
       relationTo: 'categories',
-      required: true,
+      required: false,
       hasMany: false,
     },
     {

@@ -50,11 +50,20 @@ export default async function ActivitesPage() {
                 {/* Conteneur d'image avec aspect ratio fixe pour éviter les bandes noires */}
                 <div className="relative mb-4 aspect-video w-full overflow-hidden rounded bg-muted">
                   {activite.miniAffiche?.url ? (
+                    <div className="relative h-full w-full">
+                    {/* Fond flouté pour combler les espaces */}
+                    <img
+                      src={activite.miniAffiche.url}
+                      alt=""
+                      className="absolute inset-0 h-full w-full object-cover blur-md scale-110 brightness-50"
+                    />
+                    {/* Image nette au premier plan, entière */}
                     <img
                       src={activite.miniAffiche.url}
                       alt={activite.titre}
-                      className="h-full w-full object-cover object-center"
+                      className="relative h-full w-full object-contain object-center"
                     />
+                  </div>
                   ) : (
                     <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-muted to-muted/50 text-muted-foreground opacity-60">
                       <span className="text-xs uppercase tracking-wider font-medium">
