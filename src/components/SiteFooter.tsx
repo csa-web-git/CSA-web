@@ -18,7 +18,7 @@ const RESEAUX = [
 ]
 
 const ACCES_RAPIDES = [
-  { label: 'Acceuil',        href: '/' },
+  { label: 'Accueil',        href: '/' },
   { label: 'Programme',        href: '/programme' },
 //   { label: 'Équipes',          href: '/equipes' },
   { label: 'Soutien matériel', href: '/soutien-materiel' },
