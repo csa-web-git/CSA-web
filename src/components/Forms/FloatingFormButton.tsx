@@ -9,8 +9,9 @@ import { FormReserver } from './Reserver/FormReserver'
 import { FormAjouterBesoin } from './AjouterBesoin/FormAjouterBesoin'
 import { FormConfirmerBesoin } from './ConfirmerBesoin/FormConfirmerBesoin'
 import { FormAjouterActivite } from './AjouterActivite/FormAjouterActivite'
+import { FormSuggestion } from './Suggestion/FormSuggestion'
 
-type FormKey = 'dormir' | 'reserver' | 'ajouter-besoin' | 'confirmer-besoin' | 'ajouter-activite'
+type FormKey = 'dormir' | 'reserver' | 'ajouter-besoin' | 'confirmer-besoin' | 'ajouter-activite' | 'suggestion'
 
 // Toutes les options possibles, dans l'ordre d'affichage de la combobox
 const ALL_OPTIONS: { key: FormKey; label: string }[] = [
@@ -19,11 +20,12 @@ const ALL_OPTIONS: { key: FormKey; label: string }[] = [
   { key: 'ajouter-besoin', label: 'Ajouter un besoin' },
   { key: 'confirmer-besoin', label: 'Confirmer un besoin comblé' },
   { key: 'ajouter-activite', label: 'Proposer une activité' },
+  { key: 'suggestion', label: 'Faire une suggestion pour le site'}
 ]
 
 // Mapping route → formulaire par défaut à pré-sélectionner
 const DEFAULT_BY_ROUTE: Record<string, FormKey> = {
-  '/': 'dormir',
+  '/': 'suggestion',
   '/soutien-materiel': 'ajouter-besoin',
   '/programme': 'ajouter-activite',
   '/activite': 'ajouter-activite',
@@ -94,6 +96,7 @@ export function FloatingFormButton() {
             {activeForm === 'ajouter-besoin' && <FormAjouterBesoin onSuccess={handleSuccess} />}
             {activeForm === 'confirmer-besoin' && <FormConfirmerBesoin onSuccess={handleSuccess} />}
             {activeForm === 'ajouter-activite' && <FormAjouterActivite onSuccess={handleSuccess} />}
+            {activeForm === 'suggestion' && <FormSuggestion onSuccess={handleSuccess} />}
           </>
         )}
       </FormModal>

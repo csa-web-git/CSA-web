@@ -91,7 +91,8 @@ export const Soumissions: CollectionConfig = {
         { label: 'Passer une nuit',          value: 'passer-nuit' },
         { label: 'Ajout besoin matériel',    value: 'ajout-besoin' },
         { label: 'Confirmation besoin',      value: 'confirmation-besoin' },
-        { label: 'Ajouter une activité',     value: 'ajout-activite'}
+        { label: 'Ajouter une activité',     value: 'ajout-activite'},
+        { label: 'Faire une suggestion',     value: 'suggestion-site'}
       ],
     },
     {
