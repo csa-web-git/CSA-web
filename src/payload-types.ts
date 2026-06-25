@@ -923,7 +923,13 @@ export interface BesoinsMateriel {
  */
 export interface Soumission {
   id: number;
-  type: 'reservation-salle' | 'passer-nuit' | 'ajout-besoin' | 'confirmation-besoin' | 'ajout-activite';
+  type:
+    | 'reservation-salle'
+    | 'passer-nuit'
+    | 'ajout-besoin'
+    | 'confirmation-besoin'
+    | 'ajout-activite'
+    | 'suggestion-site';
   statut: 'en-attente' | 'validee' | 'refusee';
   /**
    * Contenu brut soumis par le formulaire.
