@@ -5,7 +5,7 @@ import Link from 'next/link'
 const CONTACT = {
   adresse: 'Pl. Xavier Neujean 9, 4000 Liège',
   adresse_link: 'https://maps.app.goo.gl/2UHbABqNjd7ZTnqx7',
-  telephone: '+32 4XX XX XX XX',
+  // telephone: '+32 4XX XX XX XX',
 }
 
 const SITES_AMIS = [
@@ -20,9 +20,9 @@ const RESEAUX = [
 const ACCES_RAPIDES = [
   { label: 'Accueil',        href: '/' },
   { label: 'Programme',        href: '/programme' },
-//   { label: 'Équipes',          href: '/equipes' },
+  { label: 'Activites',          href: '/activites' },
   { label: 'Soutien matériel', href: '/soutien-materiel' },
-//   { label: 'Forum',            href: '/forum' },
+  { label: 'Communiques',            href: '/communiques' },
 ]
 
 export function SiteFooter() {
@@ -38,11 +38,11 @@ export function SiteFooter() {
           <ul className="space-y-1.5 text-sm opacity-80">
             <li><a href={CONTACT.adresse_link} target="_blank" rel="noopener noreferrer" className="text-orange-100 border-b border-orange-200/40 hover:text-white hover:border-orange-100 transition">
             {CONTACT.adresse}</a></li>
-            <li>
+            {/* <li>
               <a href={`tel:${CONTACT.telephone.replace(/\s/g, '')}`} className="hover:opacity-70 transition-opacity">
                 {CONTACT.telephone}
               </a>
-            </li>
+            </li> */}
           </ul>
         </div>
 

@@ -78,6 +78,7 @@ export interface Config {
     'besoins-materiels': BesoinsMateriel;
     'activites-recurrentes': ActivitesRecurrente;
     soumissions: Soumission;
+    communiques: Communique;
     forms: Form;
     'form-submissions': FormSubmission;
     redirects: Redirect;
@@ -105,6 +106,7 @@ export interface Config {
     'besoins-materiels': BesoinsMaterielsSelect<false> | BesoinsMaterielsSelect<true>;
     'activites-recurrentes': ActivitesRecurrentesSelect<false> | ActivitesRecurrentesSelect<true>;
     soumissions: SoumissionsSelect<false> | SoumissionsSelect<true>;
+    communiques: CommuniquesSelect<false> | CommuniquesSelect<true>;
     forms: FormsSelect<false> | FormsSelect<true>;
     'form-submissions': FormSubmissionsSelect<false> | FormSubmissionsSelect<true>;
     redirects: RedirectsSelect<false> | RedirectsSelect<true>;
@@ -947,6 +949,37 @@ export interface Soumission {
   createdAt: string;
 }
 /**
+ * Documents internes et liens externes publiés au fil de l'avancement du CSA.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "communiques".
+ */
+export interface Communique {
+  id: number;
+  titre: string;
+  slug?: string | null;
+  descriptionCourte: string;
+  type: 'document' | 'lien-externe';
+  /**
+   * PDF affiché en ligne sur la page de détail.
+   */
+  document?: (number | null) | Media;
+  /**
+   * URL complète (https://...).
+   */
+  lienExterne?: string | null;
+  /**
+   * Optionnel — une icône générée est utilisée si absente.
+   */
+  image?: (number | null) | Media;
+  /**
+   * Utilisée pour le tri (plus récent en premier).
+   */
+  datePublication: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "form-submissions".
  */
@@ -1145,6 +1178,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'soumissions';
         value: number | Soumission;
+      } | null)
+    | ({
+        relationTo: 'communiques';
+        value: number | Communique;
       } | null)
     | ({
         relationTo: 'forms';
@@ -1582,6 +1619,22 @@ export interface SoumissionsSelect<T extends boolean = true> {
   type?: T;
   statut?: T;
   donnees?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "communiques_select".
+ */
+export interface CommuniquesSelect<T extends boolean = true> {
+  titre?: T;
+  slug?: T;
+  descriptionCourte?: T;
+  type?: T;
+  document?: T;
+  lienExterne?: T;
+  image?: T;
+  datePublication?: T;
   updatedAt?: T;
   createdAt?: T;
 }
