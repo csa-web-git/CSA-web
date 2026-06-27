@@ -8,6 +8,7 @@ const mainLinks = [
   { href: '/programme', label: 'Programme' },
   { href: '/activites', label: 'Activites' },
   { href: '/soutien-materiel', label: 'Soutien' },
+  { href: '/communiques', label: 'Communiques' },
 ]
 
 export function SiteHeader() {
