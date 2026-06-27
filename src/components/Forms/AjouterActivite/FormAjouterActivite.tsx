@@ -62,6 +62,18 @@ export function FormAjouterActivite({ onSuccess }: { onSuccess: () => void }) {
         <textarea id="description" name="description" rows={4} className={inputBase + ' rounded-2xl'} />
       </div>
 
+      <div className="flex flex-col gap-1">
+        <label htmlFor="image" className="font-semibold">Photo (optionnel)</label>
+        <input
+          id="image"
+          name="image"
+          type="file"
+          accept="image/jpeg,image/png,image/webp"
+          className={inputBase + ' rounded-full file:mr-3 file:rounded-full file:border-0 file:bg-primary file:px-3 file:py-1 file:text-primary-foreground'}
+        />
+        <p className="text-xs text-foreground/60">JPEG, PNG ou WebP, 5 Mo max.</p>
+      </div>
+
       <input type="text" name="website" tabIndex={-1} autoComplete="off" className="hidden" />
 
       {state === 'error' && <p className="text-center text-red-400">{error}</p>}
