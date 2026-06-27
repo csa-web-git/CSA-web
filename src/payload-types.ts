@@ -79,6 +79,7 @@ export interface Config {
     'activites-recurrentes': ActivitesRecurrente;
     soumissions: Soumission;
     communiques: Communique;
+    kiosk: Kiosk;
     forms: Form;
     'form-submissions': FormSubmission;
     redirects: Redirect;
@@ -107,6 +108,7 @@ export interface Config {
     'activites-recurrentes': ActivitesRecurrentesSelect<false> | ActivitesRecurrentesSelect<true>;
     soumissions: SoumissionsSelect<false> | SoumissionsSelect<true>;
     communiques: CommuniquesSelect<false> | CommuniquesSelect<true>;
+    kiosk: KioskSelect<false> | KioskSelect<true>;
     forms: FormsSelect<false> | FormsSelect<true>;
     'form-submissions': FormSubmissionsSelect<false> | FormSubmissionsSelect<true>;
     redirects: RedirectsSelect<false> | RedirectsSelect<true>;
@@ -980,6 +982,32 @@ export interface Communique {
   createdAt: string;
 }
 /**
+ * Documents PDF publiés sur la page Kiosk.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "kiosk".
+ */
+export interface Kiosk {
+  id: number;
+  titre: string;
+  slug?: string | null;
+  descriptionCourte: string;
+  /**
+   * PDF affiché en ligne sur la page de détail.
+   */
+  document: number | Media;
+  /**
+   * Optionnel — une icône générée est utilisée si absente.
+   */
+  image?: (number | null) | Media;
+  /**
+   * Utilisée pour le tri (plus récent en premier).
+   */
+  datePublication: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "form-submissions".
  */
@@ -1182,6 +1210,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'communiques';
         value: number | Communique;
+      } | null)
+    | ({
+        relationTo: 'kiosk';
+        value: number | Kiosk;
       } | null)
     | ({
         relationTo: 'forms';
@@ -1633,6 +1665,20 @@ export interface CommuniquesSelect<T extends boolean = true> {
   type?: T;
   document?: T;
   lienExterne?: T;
+  image?: T;
+  datePublication?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "kiosk_select".
+ */
+export interface KioskSelect<T extends boolean = true> {
+  titre?: T;
+  slug?: T;
+  descriptionCourte?: T;
+  document?: T;
   image?: T;
   datePublication?: T;
   updatedAt?: T;

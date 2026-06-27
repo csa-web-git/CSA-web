@@ -22,7 +22,8 @@ const ACCES_RAPIDES = [
   { label: 'Programme',        href: '/programme' },
   { label: 'Activites',          href: '/activites' },
   { label: 'Soutien matériel', href: '/soutien-materiel' },
-  { label: 'Communiques',            href: '/communiques' },
+  { label: 'Communiques',            href: '/Communiques' },
+  { label: 'Kiosk',            href: '/kiosk' },
 ]
 
 export function SiteFooter() {
