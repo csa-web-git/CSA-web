@@ -77,4 +77,8 @@
     background-color: var(--color-background);
     color: var(--color-foreground);
   }
+
+  a[target="_blank"]::after {
+    content: '↗';
+  }
 }

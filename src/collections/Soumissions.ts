@@ -35,7 +35,8 @@ export const Soumissions: CollectionConfig = {
               lieu: don.lieu,
               organisateurs: don.organisateurs,
               descriptionCourte: don.description,
-              afficherActivitePonctuelle: true
+              afficherActivitePonctuelle: true,
+              image: don.image ?? null
             },
           })
         }},
