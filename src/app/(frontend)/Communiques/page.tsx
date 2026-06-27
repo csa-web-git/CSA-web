@@ -59,7 +59,7 @@ export default async function CommuniquesPage() {
           }
 
           return (
-            <Link key={c.id} href={`/communiques/${c.slug}`}>
+            <Link key={c.id} href={`/Communiques/${c.slug}`}>
               {card}
             </Link>
           )

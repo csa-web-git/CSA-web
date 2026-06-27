@@ -1,13 +1,12 @@
-// src/app/(frontend)/communiques/[slug]/page.tsx
 import { getPayload } from 'payload'
 import config from '@payload-config'
 import { notFound } from 'next/navigation'
-import { ArrowLeft } from 'lucide-react'
 import Link from 'next/link'
+import { ArrowLeft } from 'lucide-react'
 
 export const revalidate = 60
 
-export default async function CommuniqueDetailPage({
+export default async function KioskDetailPage({
   params,
 }: {
   params: Promise<{ slug: string }>
@@ -16,19 +15,17 @@ export default async function CommuniqueDetailPage({
   const payload = await getPayload({ config })
 
   const { docs } = await payload.find({
-    collection: 'communiques',
+    collection: 'kiosk',
     where: { slug: { equals: slug } },
     limit: 1,
   })
 
-  const communique = docs[0] as any
-
-  // Un lien externe n'a pas de page de détail : on ne sert que les documents ici
-  if (!communique || communique.type !== 'document') {
+  const kiosk = docs[0] as any
+  if (!kiosk) {
     notFound()
   }
 
-  const pdfMedia = typeof communique.document === 'object' ? communique.document : null
+  const pdfMedia = typeof kiosk.document === 'object' ? kiosk.document : null
   if (!pdfMedia?.url) {
     notFound()
   }
@@ -36,17 +33,18 @@ export default async function CommuniqueDetailPage({
   return (
     <div className="mx-auto max-w-5xl px-4 py-10">
       <Link
-        href="/Communiques"
+        href="/kiosk"
         className="mb-6 inline-flex items-center gap-1.5 text-sm font-semibold text-foreground/70 hover:text-foreground"
       >
         <ArrowLeft className="h-4 w-4" />
-        Retour aux communiqués
+        Retour au Kiosk
       </Link>
-      <h1 className="mb-2 text-2xl font-bold">{communique.titre}</h1>
-      <p className="mb-6 text-foreground/70">{communique.descriptionCourte}</p>
+
+      <h1 className="mb-2 text-2xl font-bold">{kiosk.titre}</h1>
+      <p className="mb-6 text-foreground/70">{kiosk.descriptionCourte}</p>
 
       <div className="overflow-hidden rounded-2xl border border-card-foreground/10 shadow">
-        <iframe src={pdfMedia.url} title={communique.titre} className="h-[80vh] w-full" />
+        <iframe src={pdfMedia.url} title={kiosk.titre} className="h-[80vh] w-full" />
       </div>
 
       <a
