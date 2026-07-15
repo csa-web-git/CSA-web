@@ -51,15 +51,18 @@ export default function HomePage() {
   return (
     <>
       <Panel title="Qui sommes nous?">
-        <div className="space-y-4 text-sm leading-relaxed">
+        <div className="space-y-4 text-sm leading-relaxed text-center">
           <p>
-            Le CSA est un lieu qui regroupe des habitant·es, des militant·es et des collectifs. 
-            Nous occupons un bâtiment qui était abandonné au cœur de Liège pour en faire un centre social autogéré, 
-            ouvert à toutes celles et ceux qui veulent y participer.
+            En avril 2026, en plein centre de Liège, est né le Centre Social Autogéré. Dans un monde qui se militarise et dans une ville qui se gentrifie, nous avons décidé de nous réapproprier collectivement un espace laissé à l'abandon et à la spéculation depuis des années, pour en faire un lieu de rencontres, de luttes, d'échanges, de créativité, de soins et de soutien mutuel.
           </p>
           <p>
-            Notre démarche est horizontale et radicalement inclusive. 
-            Chaque décision importante est prise en assemblée générale et chaque personne présente compte autant qu'une autre.
+            Nous nous organisons horizontalement, sans être affiliés à aucuns partis politique, syndicats ou institutions. Nous mettons l'accent sur la pluralité de nos idées et de nos pratiques et sur la diversité de nos identités et de nos origines.
+          </p>
+          <p>
+            Nous nous battons férocement et joyeusement pour la dignité de toutes et tous, nous sommes activement solidaires avec toutes les personnes opprimées par le système techno-capitaliste actuel et nous vous invitons chaleureusement à venir nous rencontrer pour tisser ensemble des liens subversifs et non-marchands.
+          </p>
+          <p>
+            SHOOT ARIZONA !!!
           </p>
         </div>
       </Panel>
@@ -104,12 +107,12 @@ export default function HomePage() {
           </p>
         </div>
         <div className="flex justify-center pt-2">
-            <Link
-              href="/activites"
-              className="rounded-full bg-accent/80 px-5 py-2 text-sm font-medium text-accent-foreground shadow hover:bg-accent"
-            >
-              Rejoindre un de nos projets →
-            </Link>
+          <Link
+            href="/activites"
+            className="rounded-full bg-accent/80 px-5 py-2 text-sm font-medium text-accent-foreground shadow hover:bg-accent"
+          >
+            Rejoindre un de nos projets →
+          </Link>
         </div>
       </Panel>
     </>
