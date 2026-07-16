@@ -13,38 +13,35 @@ export const metadata = {
 
 const activities = [
   {
-    icon: '/icons/rencontre.png',
-    title: 'Lieu de rencontre',
-    desc: 'Des gens se rencontrent et partagent.',
+    icon: '/icons/lutte.png',
+    title: 'Ouvrir des espaces de luttes',
+    desc: "De manière autogérée, se rencontrer, s'organiser, résister, être solidaires. Offrir gratuitement des locaux à des collectifs autonomes.",
   },
   {
-    icon: '/icons/ASBL.png',
-    title: "Lieu d'organisation de collectifs",
-    desc: "Tout collectifs n'a pas le budget pour louer un lieu. Ce bâtiment permet un lieu pour leurs réunions et activités.",
+    icon: '/icons/partage.png',
+    title: "Partage de savoir et savoir-faire",
+    desc: "Une bibliothèque, un infokiosk, des chantiers collectifs, ...",
   },
   {
-    icon: '/icons/soupe.png',
-    title: 'Cantine populaire',
-    desc: 'Une cantine offre à certains moments des repas à prix libre.',
+    icon: '/icons/activite.png',
+    title: 'Des activités',
+    desc: 'Des soirées de soutien, des ciné-clubs, des documentaires, des débats, des conférences, des arpentages, ...',
   },
   {
     icon: '/icons/atelier.png',
-    title: 'Ateliers créatifs',
-    desc: 'Espace ouvert pour la peinture, la musique et le bricolage collectif.',
+    title: 'Des ateliers',
+    desc: 'Du krump, de la poésie, de la couture, de la mécanique vélo, de la sérigraphie, ...',
   },
   {
-    icon: '/icons/chantier.png',
-    title: 'Chantier collectif',
-    desc: 'Restauration du bâtiment par et pour ses occupants.',
+    icon: '/icons/rencontre.png',
+    title: 'Tisser du lien',
+    desc: 'Des moments de détente conviviaux, un jardin et de la compagnie, une garderie, une donnerie, une cuisine collective, des repas populaires, ...',
   },
-]
-
-const groups = [
-  { name: 'Groupe ingé', desc: 'Gestion des travaux — électricité, plomberie.' },
-  { name: 'Groupe accueil', desc: 'Accueille les nouveaux et entretient le lieu.' },
-  { name: 'Groupe cuisine', desc: 'Organise la cantine et les courses.' },
-  { name: 'Groupe culture', desc: 'Concerts, expos, ateliers.' },
-  { name: 'Groupe externe', desc: 'Liens avec voisins, presse, autorités.' },
+  {
+    icon: '/icons/selfcare.png',
+    title: 'Prendre soin',
+    desc: 'Des séances de psy, de kiné et de massage, un groupe de gestion de conflits, du soutien mutuel, ...',
+  },
 ]
 
 export default function HomePage() {
@@ -78,7 +75,7 @@ export default function HomePage() {
       </section>
 
       <Panel title="Que faisons-nous?">
-        <div className="grid grid-cols-2 gap-6 md:grid-cols-3 lg:grid-cols-5">
+        <div className="grid grid-cols-2 gap-8 md:grid-cols-3">
           {activities.map((a) => (
             <div key={a.title} className="flex flex-col items-center text-center">
               <div className="flex h-20 w-20 items-center justify-center rounded-full bg-background text-foreground shadow-inner">
@@ -89,30 +86,41 @@ export default function HomePage() {
                 />
               </div>
               <h3 className="mt-4 font-semibold">{a.title}</h3>
-              <p className="mt-2 text-xs leading-relaxed opacity-90">{a.desc}</p>
+              <p className="mt-2 text-xs leading-7 opacity-90">{a.desc}</p>
             </div>
           ))}
+        </div>
+        <div className="mt-12 flex justify-center">
+          <Link
+              href="/activites"
+              className="rounded-full px-8 py-3 text-black bg-accent hover:font-semibold hover:text-accent-foreground"
+          >
+              Rejoins-nous!
+          </Link>
         </div>
       </Panel>
 
       <Panel title="Comment nous soutenir?">
-        <div className="space-y-4 text-sm leading-relaxed">
+        <div className="space-y-4 text-sm leading-relaxed text-center">
           <p>
-            Le plus précieux reste la présence — venez aux permanences, mangez à la cantine,
-            participez à un atelier ou à une assemblée.
+            La meilleure manière de soutenir le Centre Social Autogéré, c'est de venir y mettre de l'énergie! Que ce soit en proposant une activité ou en y participant, en rejoignant un des nombreux groupes de travail déjà existants ou en venant donner un coup de main ponctuel, chaque geste est apprécié!
           </p>
           <p>
-            Vous pouvez aussi donner du matériel, relayer nos communications, ou contribuer
-            financièrement aux frais courants via la page Contact.
+            Viens nous rencontrer :
+            - tous les 1er et 3ème dimanche du mois, entre 14 et 18h, pour une prise de contact conviviale ;
+            - tous les 5 et 20 de chaque mois, à 18h, pour participer aux Assemblées Générales!
           </p>
-        </div>
-        <div className="flex justify-center pt-2">
-          <Link
-            href="/activites"
-            className="rounded-full bg-accent/80 px-5 py-2 text-sm font-medium text-accent-foreground shadow hover:bg-accent"
-          >
-            Rejoindre un de nos projets →
-          </Link>
+          <p>
+            Nous avons également besoin de matos de toutes sortes, tu trouveras la liste de ce que nous cherchons {' '}
+            <Link
+              href="/soutien-materiel"
+              className="font-semibold text-accent underline underline-offset-4 transition hover:text-accent-foreground">
+               sur cette page.
+            </Link>
+          </p>
+          <p>
+            Enfin, même si l'argent c'est (vraiment très) mal, et qu'on veut en finir définitivement avec lui et le capitalisme, pour le moment on en a quand même (un peu) besoin pour faire tenir le lieu et alimenter nos luttes. Alors si tu es milliardaire, millionnaire ou juste suffisamment riche à ton goût, nous ne crachons pas sur les dons! N'hésite pas à nous contacter via le formulaire, nous t'expliquerons comment faire et à quoi ça nous sert!
+          </p>
         </div>
       </Panel>
     </>
