@@ -15,6 +15,7 @@ type Props = {
 
 function formatHeure(dateString: string) {
   return new Date(dateString).toLocaleTimeString('fr-BE', {
+    timeZone: 'UTC',
     hour: '2-digit',
     minute: '2-digit',
   })
