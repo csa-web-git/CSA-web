@@ -34,7 +34,7 @@ const inter = Inter({
 })
 
 export const metadata = {
-  title: 'Centre Social Associatif',
+  title: 'Centre Social Autogéré',
   description: 'Centre social autogéré — programme, équipes, hébergement, réservation de salle.',
 }
 

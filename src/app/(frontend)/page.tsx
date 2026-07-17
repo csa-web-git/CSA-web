@@ -48,7 +48,7 @@ export default function HomePage() {
   return (
     <>
       <Panel title="Qui sommes nous?">
-        <div className="space-y-4 text-sm leading-relaxed text-center">
+        <div className="space-y-4 text-xl leading-relaxed text-center">
           <p>
             En avril 2026, en plein centre de Liège, est né le Centre Social Autogéré. Dans un monde qui se militarise et dans une ville qui se gentrifie, nous avons décidé de nous réapproprier collectivement un espace laissé à l'abandon et à la spéculation depuis des années, pour en faire un lieu de rencontres, de luttes, d'échanges, de créativité, de soins et de soutien mutuel.
           </p>
@@ -85,8 +85,8 @@ export default function HomePage() {
                   className="h-full w-full rounded-full object-cover"
                 />
               </div>
-              <h3 className="mt-4 font-semibold">{a.title}</h3>
-              <p className="mt-2 text-xs leading-7 opacity-90">{a.desc}</p>
+              <h3 className="mt-4 font-semibold text-xl">{a.title}</h3>
+              <p className="mt-2 text-l leading-7 opacity-90">{a.desc}</p>
             </div>
           ))}
         </div>
@@ -101,7 +101,7 @@ export default function HomePage() {
       </Panel>
 
       <Panel title="Comment nous soutenir?">
-        <div className="space-y-4 text-sm leading-relaxed text-center">
+        <div className="space-y-4 text-xl leading-relaxed text-center">
           <p>
             La meilleure manière de soutenir le Centre Social Autogéré, c'est de venir y mettre de l'énergie! Que ce soit en proposant une activité ou en y participant, en rejoignant un des nombreux groupes de travail déjà existants ou en venant donner un coup de main ponctuel, chaque geste est apprécié!
           </p>

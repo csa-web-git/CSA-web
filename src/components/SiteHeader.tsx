@@ -48,7 +48,7 @@ export function SiteHeader() {
           <br />
           Social
           <br />
-          Auto-géré
+          Autogéré
         </Link>
 
         <button
