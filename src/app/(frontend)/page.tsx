@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { Panel } from '@/components/Panel'
 import { Users, HandHeart, Soup, Sparkles, Hammer } from 'lucide-react'
+import Image from 'next/image'
 
 export const metadata = {
   title: 'Accueil — Collectif',
@@ -47,6 +48,15 @@ const activities = [
 export default function HomePage() {
   return (
     <>
+      <Panel>
+        <div className="gap-6">
+          <img
+            src="/visu/AG.jpg"
+            alt="Assemblée Générale"
+            className="w-full max-h-[500px] rounded-2xl object-contain"
+          />
+        </div>
+      </Panel>
       <Panel title="Qui sommes nous?">
         <div className="space-y-4 text-xl leading-relaxed text-center">
           <p>
@@ -61,6 +71,15 @@ export default function HomePage() {
           <p>
             SHOOT ARIZONA !!!
           </p>
+        </div>
+      </Panel>
+      <Panel>
+        <div className="gap-6">
+          <img
+                src="/visu/acceuil.jpg"
+                alt="Après-midi portes ouvertes"
+                className="w-full max-h-[500px] rounded-2xl object-contain"
+              />
         </div>
       </Panel>
 
