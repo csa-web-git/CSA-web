@@ -3,6 +3,7 @@ import { Panel } from '@/components/Panel'
 import { getPayload } from 'payload'
 import config from '@payload-config'
 import { BanderoleSlider, BanderoleSlideType } from '@/components/banderole/BanderoleAcceuil'
+import { MapCSA } from '@/components/MapCSA'
 
 
 export const dynamic = 'force-dynamic'
@@ -171,29 +172,32 @@ export default async function HomePage() {
                 ponctuel, chaque geste est apprécié!
               </p>
               <p>
-                Viens nous rencontrer : - tous les 1er et 3ème dimanche du mois, entre 14 et 18h,
-                pour une prise de contact conviviale ; - tous les 5 et 20 de chaque mois, à 18h,
-                pour participer aux Assemblées Générales!
+                <b>Viens nous rencontrer : </b>
+                <ul>
+                  <li> - tous les 1er et 3ème dimanche du mois, entre 14 et 18h, pour une prise de contact conviviale ; </li>
+                  <li> - tous les 5 et 20 de chaque mois, à 18h, pour participer aux Assemblées Générales!</li>
+                </ul>                
               </p>
               <p>
-                Nous avons également besoin de matos de toutes sortes, tu trouveras la liste de ce
-                que nous cherchons{' '}
+                Nous avons également besoin de matos de toutes sortes, tu trouveras la liste de ce que nous cherchons en {' '}
                 <Link
                   href="/soutien-materiel"
                   className="font-semibold text-accent underline underline-offset-4 transition hover:text-accent-foreground"
                 >
-                  sur cette page.
+                  [cliquant ici.]
                 </Link>
               </p>
               <p>
                 Enfin, même si l'argent c'est (vraiment très) mal, et qu'on veut en finir
                 définitivement avec lui et le capitalisme, pour le moment on en a quand même (un peu)
-                besoin pour faire tenir le lieu et alimenter nos luttes. Alors si tu es milliardaire,
-                millionnaire ou juste suffisamment riche à ton goût, nous ne crachons pas sur les
-                dons! N'hésite pas à nous contacter via le formulaire, nous t'expliquerons comment
-                faire et à quoi ça nous sert!
+                besoin pour faire tenir le lieu et alimenter nos luttes. Alors si tu en as envie, saches 
+                que nous acceptons les dons! N'hésite pas à nous contacter via le formulaire, 
+                nous t'expliquerons comment faire et à quoi ça nous sert!
               </p>
             </div>
+          </Panel>
+          <Panel title="Nous trouver">
+            <MapCSA />
           </Panel>
         </main>
 

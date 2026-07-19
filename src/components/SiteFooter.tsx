@@ -4,7 +4,7 @@ import Link from 'next/link'
 // — Configuration en dur, à éditer directement ici —
 const CONTACT = {
   adresse: 'Pl. Xavier Neujean 9, 4000 Liège',
-  adresse_link: 'https://maps.app.goo.gl/2UHbABqNjd7ZTnqx7',
+  adresse_link: 'https://www.openstreetmap.org/?mlat=50.643188&mlon=5.568706#map=18/50.643186/5.568706',
   // telephone: '+32 4XX XX XX XX',
 }
 
