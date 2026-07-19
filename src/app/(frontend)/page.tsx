@@ -171,13 +171,12 @@ export default async function HomePage() {
                 un des nombreux groupes de travail déjà existants ou en venant donner un coup de main
                 ponctuel, chaque geste est apprécié!
               </p>
-              <p>
-                <b>Viens nous rencontrer : </b>
+              <p><b>Viens nous rencontrer : </b></p>
                 <ul>
                   <li> - tous les 1er et 3ème dimanche du mois, entre 14 et 18h, pour une prise de contact conviviale ; </li>
                   <li> - tous les 5 et 20 de chaque mois, à 18h, pour participer aux Assemblées Générales!</li>
                 </ul>                
-              </p>
+              
               <p>
                 Nous avons également besoin de matos de toutes sortes, tu trouveras la liste de ce que nous cherchons en {' '}
                 <Link
