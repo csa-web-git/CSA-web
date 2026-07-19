@@ -14,7 +14,7 @@ export function MapCSA() {
       const L = (await import('leaflet')).default
       await import('leaflet/dist/leaflet.css')
 
-      if (document.getElementById('map-csa')?._leaflet_id) return
+      if ((document.getElementById('map-csa') as any)?._leaflet_id) return
 
       map = L.map('map-csa').setView([LAT, LNG], ZOOM)
 
