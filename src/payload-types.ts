@@ -80,6 +80,7 @@ export interface Config {
     soumissions: Soumission;
     communiques: Communique;
     kiosk: Kiosk;
+    'banderole-slides': BanderoleSlide;
     forms: Form;
     'form-submissions': FormSubmission;
     redirects: Redirect;
@@ -109,6 +110,7 @@ export interface Config {
     soumissions: SoumissionsSelect<false> | SoumissionsSelect<true>;
     communiques: CommuniquesSelect<false> | CommuniquesSelect<true>;
     kiosk: KioskSelect<false> | KioskSelect<true>;
+    'banderole-slides': BanderoleSlidesSelect<false> | BanderoleSlidesSelect<true>;
     forms: FormsSelect<false> | FormsSelect<true>;
     'form-submissions': FormSubmissionsSelect<false> | FormSubmissionsSelect<true>;
     redirects: RedirectsSelect<false> | RedirectsSelect<true>;
@@ -1008,6 +1010,30 @@ export interface Kiosk {
   createdAt: string;
 }
 /**
+ * Visuels affichés dans la banderole latérale de la page d'accueil.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "banderole-slides".
+ */
+export interface BanderoleSlide {
+  id: number;
+  title: string;
+  /**
+   * Visuel vertical recommandé (ratio portrait 2:3 idéal).
+   */
+  image: number | Media;
+  /**
+   * Optionnel — si renseigné, le clic amène à la page de cette activité.
+   */
+  activite?: (number | null) | Activite;
+  /**
+   * Tri ascendant.
+   */
+  ordre?: number | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "form-submissions".
  */
@@ -1214,6 +1240,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'kiosk';
         value: number | Kiosk;
+      } | null)
+    | ({
+        relationTo: 'banderole-slides';
+        value: number | BanderoleSlide;
       } | null)
     | ({
         relationTo: 'forms';
@@ -1681,6 +1711,18 @@ export interface KioskSelect<T extends boolean = true> {
   document?: T;
   image?: T;
   datePublication?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "banderole-slides_select".
+ */
+export interface BanderoleSlidesSelect<T extends boolean = true> {
+  title?: T;
+  image?: T;
+  activite?: T;
+  ordre?: T;
   updatedAt?: T;
   createdAt?: T;
 }

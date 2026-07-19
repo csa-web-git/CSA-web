@@ -24,6 +24,7 @@ import { ActivitesRecurrentes } from './collections/ActivitesRecurrentes'
 import { Soumissions } from './collections/Soumissions'
 import { Communiques } from './collections/Communiques'
 import { Kiosk } from './collections/Kiosks'
+import { BanderoleSlides } from './collections/BanderoleSlides'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -73,7 +74,7 @@ export default buildConfig({
     },
     push: false
   }),
-  collections: [Pages, Posts, Media, Categories, Users, Activites, Equipes, Taches, BesoinsMateriels, ActivitesRecurrentes, Soumissions, Communiques, Kiosk],
+  collections: [Pages, Posts, Media, Categories, Users, Activites, Equipes, Taches, BesoinsMateriels, ActivitesRecurrentes, Soumissions, Communiques, Kiosk, BanderoleSlides],
   cors: [getServerSideURL()].filter(Boolean),
   globals: [Header, Footer],
   plugins: [
